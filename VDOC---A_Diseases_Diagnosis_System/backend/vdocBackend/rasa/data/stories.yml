@@ -1,0 +1,135 @@
+version: "3.1"
+
+stories:
+
+- story: greet and happy path
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: mood_great
+    - action: utter_happy
+
+- story: chatbot responds with diseases (full flow)
+  steps:
+    - intent: inform
+    - action: action_retrieve_diseases
+    - action: utter_ask_precaution
+    - intent: affirm
+    - action: state_precaution
+    - action: utter_ask_medication
+    - intent: affirm
+    - action: state_medication
+    - action: utter_ask_diet
+    - intent: affirm
+    - action: state_diet
+    - intent: mood_great
+    - action: utter_happy
+    - action: utter_did_that_help
+    - intent: affirm
+    - action: utter_happy
+
+- story: chatbot responds with diseases (denied precaution)
+  steps:
+    - intent: inform
+    - action: action_retrieve_diseases
+    - action: utter_ask_precaution
+    - intent: deny
+    - action: utter_ask_medication
+    - intent: affirm
+    - action: state_medication
+    - action: utter_ask_diet
+    - intent: affirm
+    - action: state_diet
+    - intent: mood_great
+    - action: utter_happy
+
+- story: chatbot responds with diseases (denied precaution and medication)
+  steps:
+    - intent: inform
+    - action: action_retrieve_diseases
+    - action: utter_ask_precaution
+    - intent: deny
+    - action: utter_ask_medication
+    - intent: deny
+    - action: utter_ask_diet
+    - intent: affirm
+    - action: state_diet
+    - intent: mood_great
+    - action: utter_happy
+
+- story: chatbot responds with diseases (denied all information)
+  steps:
+    - intent: inform
+    - action: action_retrieve_diseases
+    - action: utter_ask_precaution
+    - intent: deny
+    - action: utter_ask_medication
+    - intent: deny
+    - action: utter_ask_diet
+    - intent: deny
+    - intent: mood_great
+    - action: utter_happy
+
+- story: chatbot responds with diseases (only medication)
+  steps:
+    - intent: inform
+    - action: action_retrieve_diseases
+    - action: utter_ask_medication
+    - intent: affirm
+    - action: state_medication
+    - action: utter_ask_precaution
+    - intent: affirm
+    - action: state_precaution
+    - action: utter_ask_diet
+    - intent: affirm
+    - action: state_diet
+    - intent: mood_great
+    - action: utter_happy
+
+- story: chatbot responds with diseases (only diet)
+  steps:
+    - intent: inform
+    - action: action_retrieve_diseases
+    - action: utter_ask_diet
+    - intent: affirm
+    - action: state_diet
+    - action: utter_ask_medication
+    - intent: affirm
+    - action: state_medication
+    - action: utter_ask_precaution
+    - intent: affirm
+    - action: state_precaution
+    - intent: mood_great
+    - action: utter_happy
+
+- story: chatbot responds with diseases (goodbye after denying precaution)
+  steps:
+    - intent: inform
+    - action: action_retrieve_diseases
+    - action: utter_ask_precaution
+    - intent: deny
+    - action: utter_goodbye
+
+- story: user diseases description
+  steps:
+    - intent: description
+    - action: state_description
+
+- story: user diseases medication
+  steps:
+    - intent: medication
+    - action: state_medication
+
+- story: user diseases diet
+  steps:
+    - intent: diet
+    - action: state_diet
+
+- story: user diseases precaution
+  steps:
+    - intent: precaution
+    - action: state_precaution
+
+- story: chat bot greeting
+  steps:
+    - action: utter_greet

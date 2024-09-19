@@ -1,0 +1,1351 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - inform
+  - description
+  - medication
+  - diet
+  - precaution
+
+entities:
+  - symptom
+  - disease
+
+slots:
+  symptoms:
+    type: list
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+  diseases:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+  severity:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+responses:
+  utter_greet:
+    - text: "Hi there! Welcome to VDOC, your go-to for health diagnosis. How can I assist you in understanding your symptoms today?"
+    - text: "Hello and welcome to VDOC. I'm here to help you with diagnosing diseases and understanding health conditions. What can I assist you with today?"
+    - text: "Welcome to VDOC. How can I help you with your health concerns today?"
+    - text: "Hello! You're in good hands with VDOC. Let me help you figure out what's going on with your health. How can I assist you today?"
+    - text: "Hi! You've just connected with VDOC, the smart way to diagnose health issues. What symptoms or questions do you have for me today?"
+    - text: "Hey there! Welcome to VDOC. Ready to dive into your health questions? Let me know how I can help!"
+    - text: "Hello and welcome to VDOC! I'm here to help you navigate through symptoms and provide insights on potential conditions. What's on your mind today?"
+    - text: "Welcome to VDOC! Don't worry, I'm here to guide you through any health concerns you might have. How can I make things easier for you today?"
+
+  utter_cheer_up:
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+    - text: "Did that help you?"
+
+  utter_happy:
+    - text: "It's been awesome helping you today! 😊 If you need more assistance or have more questions, just drop by anytime. Have a fantastic day!"
+    - text: "You were amazing today! 🌟 If you need anything else or just want to chat, I'm here for you. Wishing you a wonderful day ahead!"
+    - text: "Thanks for a great session! 😄 Remember, if you ever need more help, I'm always here with a smile. Have a super day!"
+    - text: "You did great today! 🎉 If you have more questions or need further help, feel free to return anytime. Have an excellent day!"
+    - text: "It was a pleasure assisting you! 😊 If you need more info or support, just come back anytime. Have an amazing day!"
+    - text: "I'm glad we could get through this together! 🌟 If you need more help, just give me a shout. Have a fantastic and joyful day!"
+    - text: "You've been fantastic! 😃 If you need anything else or have more questions, just reach out. Have a great day ahead!"
+    - text: "Thanks for a great interaction! 😊 I'm here anytime you need more help or have questions. Have a wonderful day!"
+
+  utter_goodbye:
+    - text: "Thank you for using VDOC! If you have any more questions or need further assistance, feel free to come back. Take care and stay healthy!"
+    - text: "Thank you for using VDOC. If you have any additional questions or need further assistance, don't hesitate to reach out. Have a great day!"
+    - text: "Goodbye! If you need more help, just come back anytime. Have a wonderful day!"
+    - text: "It was great assisting you today! Remember, you can always return if you have more questions or need further help. Take care!"
+    - text: "Thanks for chatting with VDOC! If you have more questions or need assistance in the future, I'm here for you. See you next time!"
+    - text: "Thank you for using VDOC! If you have more questions or need to revisit anything, I'm always here to help. Wishing you good health and a great day!"
+    - text: "I'm glad I could assist you today. Remember, if you need more support or have any more questions, I'm just a click away. Take care and stay well!"
+
+  utter_iamabot:
+    - text: "You're chatting with a Rasa-powered chatbot! I'm here to help with your health questions and provide information. If you need anything, just let me know!"
+
+  utter_ask_precaution:
+    - text: "Would you like to know precaution for {diseases}?"
+  
+  utter_ask_medication:
+    - text: "Would you like to know the recommended medication for {diseases}?"
+    
+  utter_ask_diet:
+    - text: "Would you like to know the recommended diet for {diseases}?"
+
+  utter_ask_description:
+    - text: "Would you like to know description for {diseases}?"
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+actions:
+  - action_retrieve_diseases
+  - state_precaution
+  - state_medication
+  - state_diet
+  - state_description
+
+
+synonyms:
+  - synonym: itching
+    examples: |
+      - pruritus
+      - skin irritation
+      - itching sensation
+    common_mistakes: |
+      - itiching
+      - itchng
+      - pruitus
+      - puritus
+
+  - synonym: skin_rash
+    examples: |
+      - rash
+      - dermatitis
+      - hives
+      - skin rash
+      - skin_rashes
+    common_mistakes: |
+      - sking rash
+      - skin-rash
+      - rashs
+      - dermatitis
+
+  - synonym: nodal_skin_eruptions
+    examples: |
+      - nodules
+      - lumps
+      - skin bumps
+      - nodal skin eruptions
+      - nodal skin eruption
+    common_mistakes: |
+      - nodal_sking_eruptions
+      - nodal_skin_eruptin
+      - skin_eruptions
+      - nodal_skin_eruptions
+
+  - synonym: dischromic_patches
+    examples: |
+      - skin discoloration
+      - pigment changes
+      - hypo/hyperpigmentation
+      - dischromic patches
+      - dischromic patch
+    common_mistakes: |
+      - dyschromic_patches
+      - discolor_patches
+      - dyschromic_patches
+      - dischromic_patchs
+
+  - synonym: continuous_sneezing
+    examples: |
+      - sneezing fits
+      - repeated sneezing
+      - persistent sneezing
+      - continuous sneezing
+      - continuous sneeze
+    common_mistakes: |
+      - continous_sneezing
+      - continuos_sneezing
+      - sneezing_fits
+      - repeated_sneezing
+
+  - synonym: shivering
+    examples: |
+      - chills
+      - trembling
+      - shaking
+      - shivering
+      - shiver
+    common_mistakes: |
+      - shiverring
+      - shivvering
+      - shiverng
+      - chils
+
+  - synonym: chills
+    examples: |
+      - cold sensation
+      - shivers
+      - rigors
+      - chills
+      - chill
+    common_mistakes: |
+      - chils
+      - chillz
+      - shivvers
+      - rigors
+
+  - synonym: watering_from_eyes
+    examples: |
+      - teary eyes
+      - lacrimation
+      - watery eyes
+      - watering from eyes
+      - water from eyes
+    common_mistakes: |
+      - wattering_from_eyes
+      - watering_eyes
+      - tear_eyes
+      - lacrimations
+
+  - synonym: stomach_pain
+    examples: |
+      - abdominal pain
+      - tummy ache
+      - stomach ache
+      - stomach pain
+      - stomach pains
+    common_mistakes: |
+      - stomaach_pain
+      - abdonimal_pain
+      - tummyy_ache
+      - stomaach_pains
+
+  - synonym: acidity
+    examples: |
+      - heartburn
+      - acid reflux
+      - sour stomach
+      - acidity
+    common_mistakes: |
+      - acity
+      - acid_reflux
+      - sour_stomach
+      - acidiity
+
+  - synonym: ulcers_on_tongue
+    examples: |
+      - tongue sores
+      - canker sores
+      - mouth ulcers
+      - ulcers on tongue
+      - tongue ulcers
+    common_mistakes: |
+      - ulces_on_tongue
+      - ulers_on_tongue
+      - canker_sore
+      - tounge_ulcers
+
+  - synonym: vomiting
+    examples: |
+      - emesis
+      - throwing up
+      - nausea with vomiting
+      - vomiting
+      - vomit
+    common_mistakes: |
+      - vomitting
+      - vommiting
+      - emesis
+      - thrwoing_up
+
+  - synonym: cough
+    examples: |
+      - hacking
+      - throat clearing
+      - persistent cough
+      - cough
+      - coughing
+    common_mistakes: |
+      - coug
+      - caugh
+      - coughin
+      - hacking
+
+  - synonym: chest_pain
+    examples: |
+      - thoracic pain
+      - chest discomfort
+      - angina
+      - chest pain
+      - chest pains
+    common_mistakes: |
+      - ches_pain
+      - thoractic_pain
+      - chest_discomfort
+      - angina
+
+  - synonym: yellowish_skin
+    examples: |
+      - jaundice
+      - yellowing of the skin
+      - yellow complexion
+      - yellowish skin
+    common_mistakes: |
+      - yellowsh_skin
+      - yelloish_skin
+      - jaundic
+      - yellowing_skin
+
+  - synonym: nausea
+    examples: |
+      - queasiness
+      - urge to vomit
+      - sick feeling
+      - nausea
+    common_mistakes: |
+      - nausaea
+      - nauzea
+      - queasiness
+      - sick_feeling
+
+  - synonym: loss_of_appetite
+    examples: |
+      - anorexia
+      - decreased hunger
+      - lack of appetite
+      - loss of appetite
+    common_mistakes: |
+      - lose_of_appetite
+      - appetite_loss
+      - lack_of_appetite
+      - anorexia
+
+  - synonym: abdominal_pain
+    examples: |
+      - belly pain
+      - gut pain
+      - stomach cramps
+      - abdominal pain
+    common_mistakes: |
+      - abdomnial_pain
+      - belly_pain
+      - gut_pain
+      - stomch_cramps
+
+  - synonym: yellowing_of_eyes
+    examples: |
+      - jaundice
+      - scleral icterus
+      - yellow sclera
+      - yellowing of eyes
+    common_mistakes: |
+      - yellow_of_eyes
+      - scleral_icterus
+      - jaundiced_eyes
+      - yellowing_eyes
+
+  - synonym: burning_micturition
+    examples: |
+      - painful urination
+      - dysuria
+      - burning sensation while urinating
+      - burning micturition
+    common_mistakes: |
+      - burning_urination
+      - dysuria
+      - painful_urination
+      - burning_micturition
+
+  - synonym: spotting_urination
+    examples: |
+      - urinary spotting
+      - spotting after urination
+      - blood spots in urine
+      - spotting urination
+    common_mistakes: |
+      - spotting_urin
+      - urinary_spottng
+      - blood_spots_in_urine
+      - urinary_spottng
+
+  - synonym: passage_of_gases
+    examples: |
+      - flatulence
+      - passing gas
+      - farting
+      - passage of gases
+    common_mistakes: |
+      - gas_passing
+      - passage_of_gas
+      - flatulance
+      - farting
+
+  - synonym: internal_itching
+    examples: |
+      - internal pruritus
+      - deep itching
+      - itching sensation inside
+      - internal itching
+    common_mistakes: |
+      - internal_pruitus
+      - deep_itching
+      - internal_itiching
+      - itching_sensation_inside
+
+  - synonym: indigestion
+    examples: |
+      - dyspepsia
+      - upset stomach
+      - stomach discomfort
+      - indigestion
+    common_mistakes: |
+      - indigestion
+      - dyspepsa
+      - stomach_discomfort
+      - dyspepsia
+
+  - synonym: muscle_wasting
+    examples: |
+      - muscle atrophy
+      - muscle loss
+      - muscle degradation
+      - muscle wasting
+    common_mistakes: |
+      - muscle_atrophy
+      - muscle_wasting
+      - muscle_loss
+      - muscle_degradation
+
+  - synonym: patches_in_throat
+    examples: |
+      - throat patches
+      - white patches
+      - throat spots
+      - patches in throat
+    common_mistakes: |
+      - patchs_in_throat
+      - white_patchs
+      - throat_paches
+      - throat_spots
+
+  - synonym: high_fever
+    examples: |
+      - hyperpyrexia
+      - elevated temperature
+      - severe fever
+      - high fever
+    common_mistakes: |
+      - high_fever
+      - hyperpyrexia
+      - elevated_temperature
+      - severe_fever
+
+  - synonym: extra_marital_contacts
+    examples: |
+      - infidelity
+      - extramarital affairs
+      - adultery
+      - extra marital contacts
+    common_mistakes: |
+      - extra_marital_affairs
+      - extramartial_contacts
+      - adultery
+      - marital_affairs
+
+  - synonym: fatigue
+    examples: |
+      - tiredness
+      - exhaustion
+      - weariness
+      - fatigue
+    common_mistakes: |
+      - fatigued
+      - tiredeness
+      - exaustion
+      - weariness
+
+  - synonym: weight_loss
+    examples: |
+      - slimming
+      - reduction in weight
+      - unintentional weight loss
+      - weight loss
+    common_mistakes: |
+      - weight_loos
+      - reduction_in_weight
+      - slimming
+      - weight_loss
+
+  - synonym: restlessness
+    examples: |
+      - agitation
+      - inability to rest
+      - unease
+      - restlessness
+    common_mistakes: |
+      - restlesness
+      - agitation
+      - unease
+      - inability_to_rest
+
+  - synonym: lethargy
+    examples: |
+      - sluggishness
+      - fatigue
+      - lack of energy
+      - lethargy
+    common_mistakes: |
+      - letharg
+      - sluggishness
+      - lack_of_energy
+      - fatigue
+
+  - synonym: irregular_sugar_level
+    examples: |
+      - fluctuating blood sugar
+      - unstable glucose levels
+      - erratic blood sugar
+      - irregular sugar level
+    common_mistakes: |
+      - irregular_sugar_levels
+      - fluctuating_sugar
+      - erratic_sugar
+      - unstable_glucose
+
+  - synonym: blurred_and_distorted_vision
+    examples: |
+      - hazy vision
+      - unclear sight
+      - vision impairment
+      - blurred and distorted vision
+    common_mistakes: |
+      - blurred_vision
+      - hazy_vision
+      - distorted_sight
+      - vision_impairment
+
+  - synonym: obesity
+    examples: |
+      - overweight
+      - excessive weight
+      - high body mass
+      - obesity
+    common_mistakes: |
+      - obesisty
+      - overweight
+      - excessive_weight
+      - high_body_mass
+
+  - synonym: excessive_hunger
+    examples: |
+      - polyphagia
+      - extreme appetite
+      - uncontrollable hunger
+      - excessive hunger
+    common_mistakes: |
+      - excess_hunger
+      - uncontrollable_appetite
+      - polyphagia
+      - extreme_appetite
+
+  - synonym: increased_appetite
+    examples: |
+      - hyperphagia
+      - enhanced appetite
+      - greater hunger
+      - increased appetite
+    common_mistakes: |
+      - increased_appetitte
+      - hyperphagia
+      - enhanced_hunger
+      - greater_appetite
+
+  - synonym: polyuria
+    examples: |
+      - excessive urination
+      - frequent urination
+      - high urine output
+      - polyuria
+    common_mistakes: |
+      - polyuria
+      - frequent_urin
+      - high_urine_output
+      - excessive_urination
+
+  - synonym: sunken_eyes
+    examples: |
+      - hollow eyes
+      - deep-set eyes
+      - sunken eye sockets
+      - sunken eyes
+    common_mistakes: |
+      - sunkne_eyes
+      - deep_set_eyes
+      - hollow_eyes
+      - sunken_eye_socktes
+
+  - synonym: dehydration
+    examples: |
+      - lack of hydration
+      - body water deficiency
+      - fluid depletion
+      - dehydration
+    common_mistakes: |
+      - dehydrattion
+      - fluid_deficiency
+      - lack_of_hydration
+      - dehydration
+
+  - synonym: diarrhoea
+    examples: |
+      - loose stools
+      - watery stools
+      - frequent bowel movements
+      - diarrhoea
+    common_mistakes: |
+      - diarrhea
+      - loose_stols
+      - frequent_bowel_movement
+      - watery_stools
+
+  - synonym: breathlessness
+    examples: |
+      - shortness of breath
+      - dyspnea
+      - difficulty breathing
+      - breathlessness
+    common_mistakes: |
+      - breathlessnesss
+      - shortness_of_breath
+      - difficulty_breathing
+      - dyspnea
+
+  - synonym: family_history
+    examples: |
+      - hereditary conditions
+      - genetic history
+      - familial background
+      - family history
+    common_mistakes: |
+      - familly_history
+      - hereditary_conditions
+      - genetic_background
+      - familial_background
+
+  - synonym: mucoid_sputum
+    examples: |
+      - mucus cough
+      - phlegm
+      - slimy sputum
+      - mucoid sputum
+    common_mistakes: |
+      - mucous_sputum
+      - phlem
+      - slimmy_sputum
+      - mucoid_sputm
+
+  - synonym: headache
+    examples: |
+      - cephalalgia
+      - head pain
+      - migraine
+      - headache
+    common_mistakes: |
+      - headeache
+      - cephalgia
+      - headpains
+      - migrain
+
+  - synonym: dizziness
+    examples: |
+      - lightheadedness
+      - vertigo
+      - unsteadiness
+      - dizziness
+    common_mistakes: |
+      - dizzyness
+      - lightheadness
+      - vertigo
+      - unsteady
+
+  - synonym: loss_of_balance
+    examples: |
+      - imbalance
+      - unsteady gait
+      - difficulty standing
+      - loss of balance
+    common_mistakes: |
+      - lose_of_balance
+      - imbalance
+      - unsteady_gait
+      - difficulty_standing
+
+  - synonym: lack_of_concentration
+    examples: |
+      - poor focus
+      - inattentiveness
+      - distractedness
+      - lack of concentration
+    common_mistakes: |
+      - lack_of_concentrtion
+      - poor_focus
+      - inattentivness
+      - distractedness
+
+  - synonym: stiff_neck
+    examples: |
+      - neck rigidity
+      - neck stiffness
+      - tight neck
+      - stiff neck
+    common_mistakes: |
+      - stif_neck
+      - neck_rigidity
+      - tight_nack
+      - neck_stiffness
+
+  - synonym: depression
+    examples: |
+      - low mood
+      - clinical depression
+      - major depressive disorder
+      - depression
+    common_mistakes: |
+      - depresssion
+      - low_mood
+      - clinical_depression
+      - major_depressive_disorder
+
+  - synonym: irritability
+    examples: |
+      - short temper
+      - grumpiness
+      - agitation
+      - irritability
+    common_mistakes: |
+      - irritable
+      - grumpyness
+      - short_temper
+      - agitaton
+
+  - synonym: visual_disturbances
+    examples: |
+      - vision problems
+      - eye disturbances
+      - visual issues
+      - visual disturbances
+    common_mistakes: |
+      - visual_dissurbances
+      - vision_issues
+      - eye_disturbances
+      - visual_disturbance
+
+  - synonym: back_pain
+    examples: |
+      - lumbar pain
+      - spine ache
+      - dorsal discomfort
+      - back pain
+    common_mistakes: |
+      - backpains
+      - lumbar_pain
+      - spine_discomfort
+      - dorsal_pain
+
+  - synonym: weakness_in_limbs
+    examples: |
+      - limb fatigue
+      - weak arms/legs
+      - muscle weakness
+      - weakness in limbs
+    common_mistakes: |
+      - weakness_in_limbs
+      - limb_fatigue
+      - weak_limbs
+      - muscle_fatigue
+
+  - synonym: neck_pain
+    examples: |
+      - cervical pain
+      - neck discomfort
+      - neck ache
+      - neck pain
+    common_mistakes: |
+      - neckpains
+      - cervical_pain
+      - neck_discomfort
+      - neck_ache
+
+  - synonym: weakness_of_one_body_side
+    examples: |
+      - hemiparesis
+      - one-sided weakness
+      - partial paralysis
+      - weakness of one body side
+    common_mistakes: |
+      - hemiparesis
+      - one_side_weakness
+      - partial_paralysis
+      - weakness_of_one_side
+
+  - synonym: altered_sensorium
+    examples: |
+      - confused state
+      - altered consciousness
+      - disoriented
+      - altered sensorium
+    common_mistakes: |
+      - altered_sensirium
+      - confused_state
+      - altered_consciousness
+      - disoriented
+
+  - synonym: dark_urine
+    examples: |
+      - concentrated urine
+      - deep-colored urine
+      - brownish urine
+      - dark urine
+    common_mistakes: |
+      - dark_urine
+      - concentrated_urine
+      - deep_colored_urine
+      - brownish_urine
+
+  - synonym: sweating
+    examples: |
+      - perspiration
+      - excessive sweating
+      - diaphoresis
+      - sweating
+    common_mistakes: |
+      - sweaating
+      - perspiration
+      - excessive_sweating
+      - diaphoresis
+
+  - synonym: muscle_pain
+    examples: |
+      - myalgia
+      - muscle ache
+      - sore muscles
+      - muscle pain
+    common_mistakes: |
+      - muscle_pains
+      - myagia
+      - muscle_ache
+      - sore_muscles
+
+  - synonym: mild_fever
+    examples: |
+      - low-grade fever
+      - slight fever
+      - mild temperature
+      - mild fever
+    common_mistakes: |
+      - mild_fever
+      - low_grade_fever
+      - slight_fever
+      - mild_temperatuer
+
+  - synonym: swelled_lymph_nodes
+    examples: |
+      - swollen glands
+      - lymphadenopathy
+      - enlarged lymph nodes
+      - swelled lymph nodes
+    common_mistakes: |
+      - swelled_lymph_nodes
+      - swollen_glands
+      - lymphadenopathy
+      - enlarged_lymph_nodes
+
+  - synonym: malaise
+    examples: |
+      - general discomfort
+      - feeling unwell
+      - unease
+      - malaise
+    common_mistakes: |
+      - malaise
+      - general_discomfort
+      - feeling_unwell
+      - unease
+
+  - synonym: red_spots_over_body
+    examples: |
+      - rash
+      - petechiae
+      - red blotches
+      - red spots over body
+    common_mistakes: |
+      - rash
+      - petechiae
+      - red_blotches
+      - red_spots_over_body
+
+  - synonym: joint_pain
+    examples: |
+      - arthralgia
+      - joint ache
+      - sore joints
+      - joint pain
+    common_mistakes: |
+      - arthralgia
+      - joint_ache
+      - sore_joints
+      - joint_pains
+
+  - synonym: pain_behind_the_eyes
+    examples: |
+      - ocular pain
+      - retro-orbital pain
+      - eye socket pain
+      - pain behind the eyes
+    common_mistakes: |
+      - ocular_pain
+      - retro_orbital_pain
+      - eye_socket_pain
+      - pain_behind_eyes
+
+  - synonym: constipation
+    examples: |
+      - hard stools
+      - bowel irregularity
+      - difficulty passing stools
+      - constipation
+    common_mistakes: |
+      - constipation
+      - hard_stools
+      - bowel_irregularity
+      - difficulty_passing_stools
+
+  - synonym: toxic_look
+    examples: |
+      - ill appearance
+      - sickly look
+      - unwell appearance
+      - toxic look
+    common_mistakes: |
+      - toxic_look
+      - ill_appearance
+      - sickly_look
+      - unwell_appearance
+
+  - synonym: belly_pain
+    examples: |
+      - abdominal pain
+      - stomach cramps
+      - gut ache
+      - belly pain
+    common_mistakes: |
+      - belly_pain
+      - abdominal_pain
+      - stomach_cramps
+      - gut_ache
+
+  - synonym: cramps
+    examples: |
+      - muscle spasms
+      - cramps
+      - cramping
+    common_mistakes: |
+      - crampss
+      - cramp
+      - musclee spasmss
+      - crampings
+
+  - synonym: bruising
+    examples: |
+      - contusions
+      - ecchymosis
+      - black-and-blue marks
+      - bruising
+    common_mistakes: |
+      - bruizing
+      - brusing
+      - contusion
+      - bruiseing
+
+  - synonym: swelling_of_stomach
+    examples: |
+      - bloating
+      - abdominal swelling
+      - distended stomach
+      - swelling of stomach
+    common_mistakes: |
+      - swelling_of_stomack
+      - abdominal_swellingg
+      - distended_stomak
+      - bloatingg
+
+  - synonym: swollen_legs
+    examples: |
+      - leg edema
+      - fluid retention in legs
+      - leg swelling
+      - swollen legs
+    common_mistakes: |
+      - swolen_legs
+      - swollen_leggs
+      - flud_retention
+      - leg_sweling
+
+  - synonym: black_stools
+    examples: |
+      - melena
+      - tarry stools
+      - dark bowel movements
+      - black stools
+    common_mistakes: |
+      - black_stool
+      - melanna
+      - dark_bowels
+      - tarry_stool
+
+  - synonym: watery_diarrhoea
+    examples: |
+      - watery stools
+      - loose motions
+      - liquid diarrhea
+      - watery diarrhoea
+    common_mistakes: |
+      - watery_diarrhoea
+      - loose_motionss
+      - liquid_diarrhoea
+      - watery_diarrhea
+
+  - synonym: swelled_blood_vessels
+    examples: |
+      - varicose veins
+      - engorged blood vessels
+      - enlarged veins
+      - swelled blood vessels
+    common_mistakes: |
+      - swolen_blood_vessels
+      - varicose_veins
+      - engorged_blood_vessel
+      - swelled_blood_vessel
+
+  - synonym: prominent_veins_on_calf
+    examples: |
+      - visible calf veins
+      - calf varicose veins
+      - bulging veins
+      - prominent veins on calf
+    common_mistakes: |
+      - prominant_veins_on_calf
+      - visibile_calf_veins
+      - calf_varicose_vein
+      - bulging_vein
+
+  - synonym: weight_gain
+    examples: |
+      - increase in weight
+      - weight increase
+      - gaining weight
+      - weight gain
+    common_mistakes: |
+      - weight_gainn
+      - increase_weight
+      - gain_weight
+      - weight_gain
+
+  - synonym: puffy_face_and_eyes
+    examples: |
+      - facial swelling
+      - swollen face and eyes
+      - puffiness
+      - puffy face and eyes
+    common_mistakes: |
+      - pufffy_face_and_eyes
+      - facial_sweling
+      - swolen_face
+      - puffy_face_and_eyes
+
+  - synonym: cold_hands_and_feets
+    examples: |
+      - chilly extremities
+      - cold hands and feet
+      - cold limbs
+      - cold hands and feets
+    common_mistakes: |
+      - cold_hands_and_feet
+      - chilly_extremeties
+      - cold_limbs
+      - cold_hands_and_feets
+
+  - synonym: mood_swings
+    examples: |
+      - emotional instability
+      - mood changes
+      - mood fluctuations
+      - mood swings
+    common_mistakes: |
+      - mood_swingss
+      - emotionnal_instability
+      - mood_change
+      - mood_swing
+
+  - synonym: hip_joint_pain
+    examples: |
+      - hip pain
+      - hip discomfort
+      - pain in hip joint
+      - hip joint pain
+    common_mistakes: |
+      - hip_joint_painn
+      - hip_disscomfort
+      - pain_in_hip_joint
+      - hip_joint_pain
+
+  - synonym: movement_stiffness
+    examples: |
+      - rigidity
+      - stiffness in movement
+      - difficulty moving
+      - movement stiffness
+    common_mistakes: |
+      - movement_stifness
+      - rigity
+      - stifness_in_movement
+      - difficulty_movinng
+
+  - synonym: pain_in_anal_region
+    examples: |
+      - rectal pain
+      - anal discomfort
+      - pain in anus
+      - pain in anal region
+    common_mistakes: |
+      - pain_in_anal_regoin
+      - rectal_disscomfort
+      - pain_in_anus
+      - anal_region_pain
+
+  - synonym: bloody_stool
+    examples: |
+      - hematochezia
+      - blood in stool
+      - red stools
+      - bloody stool
+    common_mistakes: |
+      - bloody_stools
+      - hemorrrhage
+      - blood_in_stool
+      - red_stool
+
+  - synonym: irritation_in_anus
+    examples: |
+      - anal itching
+      - irritation of anus
+      - anal discomfort
+      - irritation in anus
+    common_mistakes: |
+      - irritaion_in_anus
+      - anal_itching
+      - irritation_of_anus
+      - anal_disscomfort
+
+  - synonym: neck_stiffness
+    examples: |
+      - stiff neck
+      - neck rigidity
+      - tight neck
+      - neck stiffness
+    common_mistakes: |
+      - neck_stifness
+      - stiff_neck
+      - neck_rigidity
+      - tight_neck
+
+  - synonym: mucus_in_stool
+    examples: |
+      - mucoid stools
+      - mucus discharge in stool
+      - slimy stool
+      - mucus in stool
+    common_mistakes: |
+      - mucous_in_stool
+      - mucoid_stools
+      - slimy_stools
+      - mucus_in_stoll
+
+  - synonym: knee_pain
+    examples: |
+      - patellar pain
+      - knee ache
+      - discomfort in knee
+      - knee pain
+    common_mistakes: |
+      - knee_pains
+      - patellor_pain
+      - knee_achee
+      - discomfort_in_knee
+
+  - synonym: hip_pain
+    examples: |
+      - hip ache
+      - discomfort in hip
+      - pain in hip
+      - hip pain
+    common_mistakes: |
+      - hip_pains
+      - hip_discomfort
+      - pain_in_hip
+      - hip_pain
+
+  - synonym: swelling_joints
+    examples: |
+      - joint edema
+      - swollen joints
+      - enlarged joints
+      - swelling joints
+    common_mistakes: |
+      - swollen_joints
+      - joint_edema
+      - enlargged_joints
+      - swelling_joint
+
+  - synonym: painful_walking
+    examples: |
+      - difficulty walking
+      - pain during walking
+      - walking discomfort
+      - painful walking
+    common_mistakes: |
+      - painful_waliking
+      - difficulty_walk
+      - pain_during_walking
+      - walking_disscomfort
+
+  - synonym: small_dents_in_nails
+    examples: |
+      - nail pitting
+      - dents in nails
+      - nail surface irregularities
+      - small dents in nails
+    common_mistakes: |
+      - small_dent_in_nails
+      - nail_piting
+      - dent_in_nails
+      - nail_surface_irrregularities
+
+  - synonym: brittle_nails
+    examples: |
+      - weak nails
+      - fragile nails
+      - easily breakable nails
+      - brittle nails
+    common_mistakes: |
+      - brittle_nailss
+      - weak_nail
+      - fragile_nail
+      - easily_breakable_nail
+
+  - synonym: swollen_extremeties
+    examples: |
+      - extremity edema
+      - swollen arms/legs
+      - swollen hands/feet
+      - swollen extremities
+    common_mistakes: |
+      - swollen_extremeties
+      - extremity_edema
+      - swollen_extremeties
+      - swollen_arm_legs
+
+  - synonym: sunken_cheeks
+    examples: |
+      - hollow cheeks
+      - cheek indentation
+      - gaunt face
+      - sunken cheeks
+    common_mistakes: |
+      - sunked_cheeks
+      - hollow_cheeks
+      - cheek_indentation
+      - gaunt_face
+
+  - synonym: scarring
+    examples: |
+      - scar tissue
+      - scar formation
+      - marks after injury
+      - scarring
+    common_mistakes: |
+      - scarrinng
+      - scar_tissue
+      - scaring
+      - marks_after_injury
+
+  - synonym: blister
+    examples: |
+      - skin blister
+      - fluid-filled blister
+      - raised blister
+      - blister
+    common_mistakes: |
+      - blisters
+      - skin_bllister
+      - fluid_filled_bllister
+      - raised_bllister
+
+  - synonym: skin_peeling
+    examples: |
+      - desquamation
+      - peeling skin
+      - flaking skin
+      - skin peeling
+    common_mistakes: |
+      - skin_peelinng
+      - desquamationn
+      - peeling_skin
+      - flaking_skin
+
+  - synonym: silver_like_dusting
+    examples: |
+      - silvery scales
+      - scaly skin
+      - silver dusting on skin
+      - silver like dusting
+    common_mistakes: |
+      - silver_like_dustng
+      - silvery_scale
+      - scaly_skin
+      - silver_dusting_on_skin
+
+  - synonym: small_blisters_on_skin
+    examples: |
+      - vesicles
+      - skin blisters
+      - tiny skin blisters
+      - small blisters on skin
+    common_mistakes: |
+      - small_blisters_on_skin
+      - vesicales
+      - tiny_skin_bllisters
+      - small_blister_on_skin
+
+  - synonym: red_sore_around_nose
+    examples: |
+      - nasal sores
+      - red sores on nose
+      - inflamed area around nose
+      - red sore around nose
+    common_mistakes: |
+      - red_sore_around_nose
+      - nasal_sore
+      - inflamed_area_around_nose
+      - red_sores_on_nose
+
+  - synonym: yellow_crust_ooze
+    examples: |
+      - crusty yellow discharge
+      - oozing sores
+      - yellow crusted areas
+      - yellow crust ooze
+    common_mistakes: |
+      - yellow_crust_ooze
+      - crusty_yellow_discharge
+      - oozing_sore
+      - yellow_crusted_area
+

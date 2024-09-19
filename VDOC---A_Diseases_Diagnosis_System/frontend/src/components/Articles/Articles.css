@@ -1,0 +1,13 @@
+#article_body{
+    min-height: 100vh;
+    height: fit-content;
+    background-color: #F0F0F0;
+  }
+  #article_body >main {
+    padding: 60px 50px 50px 50px;
+  }
+
+  #articleImage{
+    border-bottom: 1px solid black;
+    height: 200px;
+  }

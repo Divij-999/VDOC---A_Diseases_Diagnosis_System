@@ -1,0 +1,12 @@
+{
+  "lookup": {
+    "eJyLrq6NBQAEOAGx": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohvSg1taS2NhYA6dwbhQ==": "utter_greet",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohvSg1taSWgBmlJSWpRfEQpbhMiAUAQvc0lw==": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohvSg1taSWgBmlJSWpRfEQpeSZQMAVufn5KSDzE4EGxQIAPEFQdQ==": "utter_happy",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohvSg1taSWgBmlJSWpRfEQpeSZQMAVufn5KSDzE4l0SkZiQUElfmNiAVKZa5w=": "action_listen",
+    "eJydjtEJgDAMBVfJAE7QVURKkSgBm5Y0ClKyu4Xqpwj+vYPjeGO1AWoWPHyYlRI7qH14DhEd3LBRUeTm7gWlOcQN1cEqiGofjV0VxXf1X+HlRQuQEhYHYzlj1hSnAZ4w8ZIkmk0Xx/JWuw==": "action_retrieve_diseases",
+    "eJydjl0KhDAMhK+SA3iCXkWklHV2CdhUkigsxbtbUB9lf95m4OOb6evWUZ0Va0wP5yKB6hGipIxAZ5nYHNLYxaCNYWnVA70U8O2DY3GHxgP9z3DzognYGRaot3eeveSho0vM8iyavzQrXBkr4siGZLAfR4Ydrjt9Zg==": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFEpLSlKL4tOLUlNLamtjAbE0EmM=": "action_listen"
+  }
+}

@@ -1,0 +1,44 @@
+/* Navbar Styles */
+/* .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+  } */
+  .navbar {
+    position: fixed; /* Fix the navbar at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 9px 20px;
+    z-index: 1000; /* Ensure it stays on top of other content */
+  }
+  
+  body {
+    /* margin: 0; Ensure no extra margin on body */
+    overflow-y: scroll; /* Ensure scrollbar is always visible */
+  
+  }
+  
+  .logo img {
+    width: 150px;
+    height: 54px;
+  }
+  
+  .nav-links a {  /* Correct the selector here */
+    margin-left: 40px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .nav-links a:hover {
+    color: #007bff;
+  }
+  

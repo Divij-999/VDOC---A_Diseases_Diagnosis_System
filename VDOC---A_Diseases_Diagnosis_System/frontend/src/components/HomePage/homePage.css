@@ -1,0 +1,209 @@
+/* General styles */
+  /* Hero Section Styles */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px; /* Rounded corners */
+}
+
+/* Change the thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+  .hero {
+    background: linear-gradient(to right, rgba(0, 0, 50, 0.2), rgba(0, 0, 50,0.2)), url('../../assets/bg-img-2.jpg') no-repeat center center/cover;
+    color: white;
+    padding: 60px;
+    text-align: left;
+    height: 550px;
+  }
+  
+  .hero-content {
+    max-width: 600px;
+  }
+  
+  .heroh1 {
+    font-size: 48px;
+    font-weight: bold;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 20px;
+    line-height: 1.2;
+    margin-top: 250px;
+  }
+  
+  .hero-buttons .btn {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 15px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* margin-bottom: 300px; */
+  }
+  
+  .hero-buttons .btn:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  /* Medical Section */
+  .medical-page-container {
+    margin-top: 80px;
+    max-width: 1100px;
+    /* margin-bottom:500px; */
+    padding: 20px;
+  }
+  
+  .medical-header h1 {
+    font-size: 50px;
+    font-weight: bold;
+    margin-left:250px;
+    font-family:'Times New Roman', Times, serif;
+  }
+  
+  .medical-info-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-left:250px;
+  }
+  
+  .medical-info-column {
+    flex: 1;
+  }
+  
+  .medical-info-box {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .medical-icon {
+    font-size: 2rem;
+    color: #007bff;
+    margin-right: 15px;
+    margin-top:22px
+  }
+  
+  .medical-info-content h4 {
+    font-weight: bold;
+    font-size:25px;
+    font-family:Arial, Helvetica, sans-serif
+  }
+  
+  .medical-info-content p{
+    font-size:18px;
+    color:gray
+  }
+
+  .medical-image-column {
+    flex: 1;
+  }
+  
+  .medical-image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .medical-img {
+    width: 250px;
+    height: 250px;
+    margin-right: 0px;
+    /* border-radius: 8px; */
+    object-fit: cover;
+  }
+  
+  /* Main Container for the Section */
+.why-choose-us {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    /* background-color: #f9f9f9; */
+    margin-top:50px;
+    margin-left:70px
+  }
+  
+  /* Left Section Image */
+  .left-section {
+    flex: 1;
+  }
+  
+  .microscope-image {
+    width: 600px;
+    height: 600px;
+    /* border-radius: 8px; */
+  }
+  
+  /* Right Section Content */
+  .right-section {
+    flex: 1;
+    padding-left: 40px;
+  }
+  
+  .right-section h2 {
+    font-size: 50px;
+    margin-top:10px;
+    margin-bottom: 70px;
+    font-family:'Times New Roman', Times, serif
+  }
+  
+  .right-section p {
+    font-size: 25px;
+    margin-bottom: 40px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  }
+  
+  /* Features Grid */
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .icon {
+    font-size: 2rem;
+    color: #007bff;
+    margin-right: 15px;
+    margin-top:20px
+  }
+  
+  .feature-content h4 {
+    font-size: 25px;
+    margin-bottom: 5px;
+    margin-top:20px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+  }
+  
+  .feature-content p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .why-choose-us {
+      flex-direction: column;
+      padding: 20px;
+    }
+  
+    .right-section {
+      padding-left: 0;
+      margin-top: 30px;
+    }
+  
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+  

@@ -1,0 +1,84 @@
+body{
+    overflow-y : auto;
+}
+#chatpage_body{
+    min-height: 86vh;
+    height: fit-content;
+    background-color: #F0F0F0;
+}
+
+#chatpage_body > main {
+    margin: 0;
+    padding: 10px 0px 0px 0px;
+}
+
+#chatpage_main_content {
+    display: flex;
+    width: 100%;
+    height: 86vh;
+    color: white;
+    max-height: 87vh;
+    overflow-y: hidden;
+  }
+
+  
+#chatpage_history{
+    width: 25%;
+    height: inherit;
+    border-right: 2px solid lightgrey;
+    max-height: inherit;
+    overflow-y: auto;
+}
+
+#chatpage_chat_content{
+    width: 75%;
+    height: inherit;
+    position: relative;
+    max-height: inherit;
+    overflow-y: auto;
+}
+
+#chatpage_chat_content_display{
+    position: absolute;
+    height: inherit;
+    z-index: 0;
+    padding: 20px;
+}
+
+#chat_prompt_space{
+    position: fixed;
+    bottom: 0;
+    width: 72%;
+    height: fit-content;
+    z-index:1 ;
+}
+
+#serverMessage{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    margin : 10px 0px 10px 0px
+}
+#serverMessageInner{
+    display: flex;
+    align-items: center;
+    max-width: 70%;
+    width: fit-content;
+    padding: 5px;
+    font-weight: 600;
+}
+
+
+#clientMessage{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin : 10px 0px 10px 0px
+}
+#clientMessageInner{
+    max-width: 70%;
+    width: fit-content;
+    padding: 5px;
+    background-color: #2C3E50;
+    color:white;
+}
