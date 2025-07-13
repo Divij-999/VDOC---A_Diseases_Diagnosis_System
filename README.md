@@ -98,4 +98,4 @@ rasa run actions
 
 ## ©️ Copyright
 Divij Modi  
-📧 Contact: dmodi@gmail.com
+📧 Contact: dmodi2806@gmail.com
